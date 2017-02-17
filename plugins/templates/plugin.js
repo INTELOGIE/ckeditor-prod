@@ -78,7 +78,7 @@
  * @member CKEDITOR.config
  */
 CKEDITOR.config.templates_files = [
-	CKEDITOR.getUrl( 'plugins/templates/templates/default.js' )
+	Framework.modules.Navigation.url('/Template/getCKEditorList')
 ];
 
 /**
