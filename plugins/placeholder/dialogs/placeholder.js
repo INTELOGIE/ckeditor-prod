@@ -28,10 +28,33 @@ CKEDITOR.dialog.add( 'placeholder', function( editor ) {
 				elements: [
 					// Dialog window UI elements.
 					{
+						id:'fields',
+						type:'select',
+						label: Framework.modules.Localization.get('_FIELD'),
+						items: Framework.modules.Template.getFieldList(),
+						default: '',
+						style: 'width:300px !important;',
+						setup: function(e) {
+							console.log('Setup');
+							console.log(e);
+							this.setValue( e.data.name );
+						},
+						onChange: function(e) {
+							console.log('onChange');
+							console.log(e);
+							this.getDialog().getContentElement('info','name').setValue(this.getValue());
+						},
+						commit: function(e) {
+							console.log('Commit');
+							console.log(e);
+							
+						}
+					},
+					{
 						id: 'name',
 						type: 'text',
 						style: 'width: 100%;',
-						label: lang.name,
+						label: Framework.modules.Localization.get('_CODE'),
 						'default': '',
 						required: true,
 						validate: CKEDITOR.dialog.validate.regex( validNameRegex, lang.invalidName ),

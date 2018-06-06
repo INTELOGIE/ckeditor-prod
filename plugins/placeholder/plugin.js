@@ -19,7 +19,7 @@
 
 		onLoad: function() {
 			// Register styles for placeholder widget frame.
-			CKEDITOR.addCss( '.cke_placeholder{background-color:#ff0}' );
+			CKEDITOR.addCss( '.cke_placeholder{background-color:#DEF3F4; color:#333;}' );
 		},
 
 		init: function( editor ) {
@@ -36,19 +36,19 @@
 				pathName: lang.pathName,
 				// We need to have wrapping element, otherwise there are issues in
 				// add dialog.
-				template: '<span class="cke_placeholder">[[]]</span>',
+				template: '<span class="cke_placeholder">{}</span>',
 
 				downcast: function() {
-					return new CKEDITOR.htmlParser.text( '[[' + this.data.name + ']]' );
+					return new CKEDITOR.htmlParser.text( '{' + this.data.name + '}' );
 				},
 
 				init: function() {
 					// Note that placeholder markup characters are stripped for the name.
-					this.setData( 'name', this.element.getText().slice( 2, -2 ) );
+					this.setData( 'name', this.element.getText().slice( 1, -1 ) );
 				},
 
 				data: function() {
-					this.element.setText( '[[' + this.data.name + ']]' );
+					this.element.setText( '{' + this.data.name + '}' );
 				},
 
 				getLabel: function() {
@@ -65,7 +65,7 @@
 		},
 
 		afterInit: function( editor ) {
-			var placeholderReplaceRegex = /\[\[([^\[\]])+\]\]/g;
+			var placeholderReplaceRegex = /\{([^\[\]])+\}/g;
 
 			editor.dataProcessor.dataFilter.addRules( {
 				text: function( text, node ) {
