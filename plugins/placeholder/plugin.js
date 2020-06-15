@@ -65,7 +65,7 @@
 		},
 
 		afterInit: function( editor ) {
-			var placeholderReplaceRegex = /\{([^\[\]])+\}/g;
+			var placeholderReplaceRegex = /\{([^\{\}])+\}/g;
 
 			editor.dataProcessor.dataFilter.addRules( {
 				text: function( text, node ) {
